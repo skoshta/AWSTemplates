@@ -1,0 +1,28 @@
+{
+  "LocalAdminUser": {
+    "Type": "AWS::IAM::User",
+    "Properties": {
+      "Path": "/",
+      "Policies": [
+        {
+          "PolicyName": "DoNotAllowAnythingOtherThanAboveUnlessMFAd",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Deny",
+                "NotAction": "iam:*",
+                "Resource": "*",
+                "Condition": {
+                  "Null": {
+                    "aws:MultiFactorAge": "true"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

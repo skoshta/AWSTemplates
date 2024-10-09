@@ -1,0 +1,6 @@
+/venv/
+/shelf/
+/workspace.xml
+.idea*
+.idea/*
+/vcs.xml

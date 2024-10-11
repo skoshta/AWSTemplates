@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "stack to create s3 bucket and its policy",
+  "Resources": {
+    "TestS3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "NotTestBucket",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    },
+    "TestBucketPolicy": {
+      "Version": "2012-10-17",
+      "Statement": [{
+        "Sid": "AllowAccessOnlyFromTestAccount",
+        "Principal": {
+          "AWS": "*"
+        },
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource": "arn:aws:s3:::703671913919/*",
+        "Condition": {
+          "StringEquals": {
+            "aws:PrincipalOrgID": ["703671913919"]
+          }
+        }
+      }]
+    }
+  }
+}

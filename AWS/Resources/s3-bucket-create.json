@@ -1,0 +1,9 @@
+{
+  "Type": "AWS::S3::Bucket",
+  "Properties":{
+    "BucketName": "TestS3Bucket",
+    "VersioningConfiguration": {
+      "Status": "Enabled"
+    }
+  }
+}
